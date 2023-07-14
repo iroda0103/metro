@@ -6,6 +6,7 @@ import express from "express";
 import { WebSocketServer } from "ws";
 import { useServer } from "graphql-ws/lib/use/ws";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import config from './shared/config/index.js'
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -61,7 +62,7 @@ const server = new ApolloServer({
 server.start().then(() => {
   app.use("/metro", expressMiddleware(server));
 
-  httpServer.listen(8080, () => {
-    console.log(`Server is listening on port 8080`);
+  httpServer.listen(config.port, () => {
+    console.log(`Server is listening on port ${config.port}`);
   });
 });
