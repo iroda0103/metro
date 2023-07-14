@@ -1,0 +1,93 @@
+
+metros
+-id
+-name: string, unique
+
+paths
+-id
+-name: string, unique
+-metro_id
+
+
+stations
+-id
+-name: string, unique
+-path_id: ref paths
+-forward_id: nullable, ref stations
+-backward_id: nullable, ref stations
+-has_path_link: boolean
+
+station_path_links
+-station_id
+-linked_id
+
+path_links
+-path_id
+-linked_id
+
+
+Metro (Toshkent)
+Path (Buyuk Ipak Yo'li)
+
+Station
+(Chilonzor, Forward Station Mirzo Ulug'bek, Backward Station Olmazor)
+(Paxtakor, Backward Station Xalqlar Do'stligi, Forward Station Mustaqillik maydoni) =>
+ (O'zbekiston pathidagi Alisher Navoiy stansiyasiga ulangan)
+
+GraphQL schema
+
+type Query {
+	metros: [Metro!]!
+	metro(id: ID!): Metro!
+
+	paths: [Paths!]!
+	path(id: ID!): Path!
+
+	stations: [Station!]!
+	station(id: ID!): Station!
+	
+	links: [Link!]!
+	link(id: ID!): Link!
+}
+
+type Metro {
+	id: ID!
+	name: String!
+	paths: [Path!]!
+}
+
+type Path {
+	id: ID!
+	name: String!
+	metro: Metro!
+	stations: [Station!]!
+	links: [PathLink!]
+}
+
+type Station {
+	id: ID!
+	name: String!
+	path: Path!
+	forward: Station
+	backward: Station
+	has_path_link: Boolean
+	links: [StationLink!]
+}
+
+type StationLink {
+	station: Station!
+	linked_station: Station!
+}
+
+type PathLink{
+	path: Path!
+	linked_path: Path!
+}
+
+
+SERVERNI KO'TARING
+SEEDLAR YASANG
+
+XARKIV METRO UCHUN: https://yandex.com/metro/kharkiv?scheme_id=sc12039691
+TOSHKENT METRO UCHUN: https://yandex.com/metro/tashkent?scheme_id=sc19351236
+BUDAPESH METRO UCHUN: https://yandex.com/metro/budapest?scheme_id=sc04704892
