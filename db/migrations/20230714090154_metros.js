@@ -4,7 +4,7 @@
  */
 export const up = function(knex) {
   return knex.schema.createTable('metros',(table)=>{
-    table.increments('id');
+    table.string('id').primary();
     table.string('name').unique();
   })
 };
