@@ -1,0 +1,12 @@
+type Query {
+	stations: [Station!]!
+	station(id: ID!): Station!
+}
+type Station {
+	id: ID!
+	name: String!
+	path: Path!
+	forward: Station
+	backward: Station
+	has_path_link: Boolean
+}

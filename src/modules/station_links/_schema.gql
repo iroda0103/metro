@@ -1,0 +1,11 @@
+type Query {
+	links: [StationLink]!
+	link(id: ID!): StationLink!
+}
+
+type StationLink {
+	station: Station!
+	linked_station: Station!
+}
+
+

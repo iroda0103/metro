@@ -1,0 +1,9 @@
+type Query{
+    metros: [Metro!]!
+	metro(id: ID!): Metro!
+}
+
+type Metro{
+    id: ID!
+	name: String!
+}

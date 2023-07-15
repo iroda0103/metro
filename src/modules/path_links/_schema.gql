@@ -1,0 +1,14 @@
+type Query {
+	path_links: [PathLink]!
+	path_link(id: ID!): PathLink!
+}
+
+type StationLink {
+	station: Station!
+	linked_station: Station!
+}
+
+type PathLink{
+	path: Path!
+	linked_path: Path!
+}

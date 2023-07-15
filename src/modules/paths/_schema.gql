@@ -1,0 +1,12 @@
+type Query {
+	paths: [Path!]!
+	path(id: ID!): Path!
+
+}
+
+type Path {
+	id: ID!
+	name: String!
+	metro: Metro!
+}
+
